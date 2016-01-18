@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="RefreshSample.Views.ScrollViewXamlPage"
+    xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
+    Title="Xaml Scroll">
+   <controls:PullToRefreshLayout
+          IsPullToRefreshEnabled="True"
+          RefreshCommand="{Binding RefreshCommand}"
+          IsRefreshing="{Binding IsBusy}"
+          RefreshColor="Blue"> 
+          <ScrollView
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand">
+            <StackLayout
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <BoxView HeightRequest="200" WidthRequest="100" BackgroundColor="Blue"/>
+                <BoxView HeightRequest="200" WidthRequest="100" BackgroundColor="Red"/>
+                <BoxView HeightRequest="200" WidthRequest="100" BackgroundColor="Yellow"/>
+                <BoxView HeightRequest="200" WidthRequest="100" BackgroundColor="Purple"/>
+                <BoxView HeightRequest="200" WidthRequest="100" BackgroundColor="Maroon"/>
+            </StackLayout>
+          </ScrollView>
+   </controls:PullToRefreshLayout>
+</ContentPage>
