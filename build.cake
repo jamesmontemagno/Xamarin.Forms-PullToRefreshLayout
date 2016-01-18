@@ -6,16 +6,16 @@ var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("versio
 
 Task ("Default").Does (() =>
 {
-	NuGetRestore ("./FormsToolkit.sln");
+	NuGetRestore ("./PullToRefreshLayout.sln");
 
-	DotNetBuild ("./FormsToolkit.sln", c => c.Configuration = "Release");
+	DotNetBuild ("./PullToRefreshLayout.sln", c => c.Configuration = "Release");
 });
 
 Task ("NuGetPack")
 	.IsDependentOn ("Default")
 	.Does (() =>
 {
-	NuGetPack ("./FormsToolkit.nuspec", new NuGetPackSettings { 
+	NuGetPack ("./PullToRefreshLayout.nuspec", new NuGetPackSettings { 
 		Version = version,
 		Verbosity = NuGetVerbosity.Detailed,
 		OutputDirectory = "./",

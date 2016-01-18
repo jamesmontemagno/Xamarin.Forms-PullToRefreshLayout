@@ -32,12 +32,9 @@ namespace Refractored.XamForms.PullToRefresh.iOS
     /// Pull to refresh layout renderer.
     /// </summary>
     [Preserve(AllMembers=true)]
-    public class PullToRefreshLayoutRenderer : ViewRenderer<Refractored.XamForms.PullToRefresh.PullToRefreshLayout, UIView>
+    public class PullToRefreshLayoutRenderer : ViewRenderer<PullToRefreshLayout, UIView>
     {
-        public override void LayoutSubviews()
-        {
-            base.LayoutSubviews();
-        }
+       
         /// <summary>
         /// Used for registration with dependency service
         /// </summary>
