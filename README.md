@@ -12,6 +12,8 @@ http://motzcod.es/post/128274430137/pull-to-refresh-anyish-xamarinforms-view
 
 Also available as a NuGet: https://www.nuget.org/packages/Refractored.XamForms.PullToRefresh/
 
+Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/6ivxyyj05tabo40a/branch/master?svg=true)](https://ci.appveyor.com/project/JamesMontemagno/xamarin-forms-pulltorefreshlayout/branch/master)
+
 **Important**
 
 If you are using the NuGet ensure that you call “PullToRefreshLayoutRenderer.Init();” in both your MainActivity and AppDelegate. (Similar to Xamarin.Forms.Maps).
