@@ -19,6 +19,7 @@ namespace RefreshSample
 {
     public class App : Application
     {
+        Page scrollViewPage;
         public App()
         {
 
@@ -33,6 +34,7 @@ namespace RefreshSample
             var gridIn = new Button { Text = "Grid" };
 
 
+            scrollViewPage = new ScrollViewPage(false);
             Page page;
             // The root page of your application
             MainPage = page = new NavigationPage(new ContentPage
@@ -71,7 +73,7 @@ namespace RefreshSample
                     BarTextColor = Color.White
                 };
 
-            scrollView.Clicked += (sender, e) => page.Navigation.PushAsync(new ScrollViewPage(false));
+            scrollView.Clicked += (sender, e) => page.Navigation.PushAsync(scrollViewPage);
             scrollViewXaml.Clicked += (sender, e) => page.Navigation.PushAsync(new ScrollViewXamlPage());
             scrollViewIn.Clicked += (sender, e) => page.Navigation.PushAsync(new ScrollViewPage(true));
             listView.Clicked += (sender, e) => page.Navigation.PushAsync(new ListViewPage(false));

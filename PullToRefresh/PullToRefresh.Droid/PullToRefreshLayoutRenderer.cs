@@ -60,7 +60,6 @@ namespace Refractored.XamForms.PullToRefresh.Droid
 
         bool init;
         IVisualElementRenderer packed;
-
         /// <summary>
         /// Setup our SwipeRefreshLayout and register for property changed notifications.
         /// </summary>
@@ -108,13 +107,13 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             if (packed != null)
                 RemoveView(packed.ViewGroup);
 
-            packed = Platform.CreateRenderer (RefreshView.Content);
+            packed = Platform.CreateRenderer(RefreshView.Content);
 
             try
             {
                 RefreshView.Content.SetValue(RendererProperty, packed);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Unable to sent renderer property, maybe an issue: " + ex);
             }
@@ -155,25 +154,36 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 SetProgressBackgroundColorSchemeColor(RefreshView.RefreshBackgroundColor.ToAndroid());
         }
 
+        bool refreshing;
         /// <summary>
         /// Gets or sets a value indicating whether this
         /// <see cref="Refractored.XamForms.PullToRefresh.Droid.PullToRefreshLayoutRenderer"/> is refreshing.
         /// </summary>
         /// <value><c>true</c> if refreshing; otherwise, <c>false</c>.</value>
-        public override bool Refreshing {
-            get {
-                return base.Refreshing;
+        public override bool Refreshing
+        {
+            get
+            {
+                return refreshing;
             }
-            set {
-                //this will break binding :( sad panda we need to wait for next version for this
-                //right now you can't update the binding.. so it is 1 way
-                if(RefreshView != null && RefreshView.IsRefreshing != value)
-                 RefreshView.IsRefreshing = value;
+            set
+            {
+                try
+                {
+                    refreshing = value;
+                    //this will break binding :( sad panda we need to wait for next version for this
+                    //right now you can't update the binding.. so it is 1 way
+                    if (RefreshView != null && RefreshView.IsRefreshing != refreshing)
+                        RefreshView.IsRefreshing = refreshing;
 
-                if (base.Refreshing == value)
-                    return;
-                
-                base.Refreshing = value;
+                    if (base.Refreshing == refreshing)
+                        return;
+                    
+                    base.Refreshing = refreshing;
+                }
+                catch (Exception ex)
+                {
+                }
             }
         }
 
