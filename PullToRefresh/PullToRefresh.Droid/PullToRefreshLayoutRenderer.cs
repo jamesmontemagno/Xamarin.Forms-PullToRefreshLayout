@@ -255,8 +255,8 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 }
                 else if (child is Android.Webkit.WebView)
                 {
-                    var scrollview = child as Android.Webkit.WebView;
-                    return (scrollview.ScrollY > 0.0);
+                    var webView = child as Android.Webkit.WebView;
+                    return (webView.ScrollY > 0.0);
                 }
                 else if (child is Android.Support.V4.Widget.SwipeRefreshLayout)
                 {
