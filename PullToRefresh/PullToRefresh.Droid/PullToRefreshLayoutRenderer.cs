@@ -253,6 +253,11 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                     var scrollview = child as Android.Widget.ScrollView;
                     return (scrollview.ScrollY <= 0.0);
                 }
+                else if (child is Android.Webkit.WebView)
+                {
+                    var webView = child as Android.Webkit.WebView;
+                    return (webView.ScrollY > 0.0);
+                }
                 else if (child is Android.Support.V4.Widget.SwipeRefreshLayout)
                 {
                     return CanScrollUp(child as ViewGroup);
