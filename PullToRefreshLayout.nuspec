@@ -13,18 +13,18 @@
        <description>
          Add Pull to Refresh to ScrollView or group a ListView. See Project for more details
          Ensure you call new PullToRefreshLayoutRenderer.Init() on each platform!
-         Built against:  2.3.1.114
+         Built against:  2.3.2.127
        </description>
        <summary>Enhanced Pull To Refresh Layout for Xamarin.Forms</summary>
        <tags>xamarin, pcl, xam.pcl, windows phone, winphone, wp8, android, xamarin.forms, ios, pull to refresh, refresh, swipe</tags>
        <dependencies>
-         <dependency id="Xamarin.Forms" version="2.3.1.114" />
+         <dependency id="Xamarin.Forms" version="2.3.2.127" />
        </dependencies>
    </metadata>
    <files>
       <!--Core-->
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.dll" target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Refractored.XamForms.PullToRefresh.dll" />
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.xml" target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Refractored.XamForms.PullToRefresh.xml" />
+     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.dll" target="lib\portable-net45+wp80+win8+wpa81\Refractored.XamForms.PullToRefresh.dll" />
+     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.xml" target="lib\portable-net45+wp80+win8+wpa81\Refractored.XamForms.PullToRefresh.xml" />
 
 
      <!--Xamarin.Android-->

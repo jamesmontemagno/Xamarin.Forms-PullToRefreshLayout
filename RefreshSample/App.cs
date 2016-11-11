@@ -73,7 +73,12 @@ namespace RefreshSample
                     BarTextColor = Color.White
                 };
 
-            scrollView.Clicked += (sender, e) => page.Navigation.PushAsync(scrollViewPage);
+            scrollView.Clicked += async (sender, e) =>
+            {
+                var page2 = new ScrollViewXamlPage();
+                await page.Navigation.PushAsync(scrollViewPage);
+                await scrollViewPage.Navigation.PushAsync(page2);
+            };
             scrollViewXaml.Clicked += (sender, e) => page.Navigation.PushAsync(new ScrollViewXamlPage());
             scrollViewIn.Clicked += (sender, e) => page.Navigation.PushAsync(new ScrollViewPage(true));
             listView.Clicked += (sender, e) => page.Navigation.PushAsync(new ListViewPage(false));
