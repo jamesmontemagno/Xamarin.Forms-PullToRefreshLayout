@@ -21,7 +21,7 @@ namespace Refractored.XamForms.PullToRefresh
     /// <summary>
     /// Pull to refresh layout.
     /// </summary>
-    public class PullToRefreshLayout: ContentView
+    public class PullToRefreshLayout : ContentView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Refractored.XamForms.PullToRefresh.PullToRefreshLayout"/> class.
@@ -36,59 +36,63 @@ namespace Refractored.XamForms.PullToRefresh
         /// <summary>
         /// The is refreshing property.
         /// </summary>
-        public static readonly BindableProperty IsRefreshingProperty = 
-            BindableProperty.Create<PullToRefreshLayout,bool> (
-                p => p.IsRefreshing, false,BindingMode.OneWay);
+        public static readonly BindableProperty IsRefreshingProperty =
+            BindableProperty.Create(nameof(IsRefreshing), typeof(bool), typeof(PullToRefreshLayout), false);
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is refreshing.
         /// </summary>
         /// <value><c>true</c> if this instance is refreshing; otherwise, <c>false</c>.</value>
-        public bool IsRefreshing {
-            get { return (bool)GetValue (IsRefreshingProperty); }
-            set { SetValue (IsRefreshingProperty, value); }
+        public bool IsRefreshing
+        {
+            get { return (bool)GetValue(IsRefreshingProperty); }
+            set
+            {
+                if ((bool)GetValue(IsRefreshingProperty) == value)
+                    OnPropertyChanged(nameof(IsRefreshing));
+
+                SetValue(IsRefreshingProperty, value);
+            }
         }
 
         /// <summary>
         /// The is pull to refresh enabled property.
         /// </summary>
-        public static readonly BindableProperty IsPullToRefreshEnabledProperty = 
-            BindableProperty.Create<PullToRefreshLayout,bool> (
-                p => p.IsPullToRefreshEnabled, true);
+        public static readonly BindableProperty IsPullToRefreshEnabledProperty =
+            BindableProperty.Create(nameof(IsPullToRefreshEnabled), typeof(bool), typeof(PullToRefreshLayout), true);
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is pull to refresh enabled.
         /// </summary>
         /// <value><c>true</c> if this instance is pull to refresh enabled; otherwise, <c>false</c>.</value>
-        public bool IsPullToRefreshEnabled {
-            get { return (bool)GetValue (IsPullToRefreshEnabledProperty); }
-            set { SetValue (IsPullToRefreshEnabledProperty, value); }
+        public bool IsPullToRefreshEnabled
+        {
+            get { return (bool)GetValue(IsPullToRefreshEnabledProperty); }
+            set { SetValue(IsPullToRefreshEnabledProperty, value); }
         }
 
         /// <summary>
         /// The refresh command property.
         /// </summary>
-        public static readonly BindableProperty RefreshCommandProperty = 
-            BindableProperty.Create<PullToRefreshLayout,ICommand> (
-                p => p.RefreshCommand, null);
+        public static readonly BindableProperty RefreshCommandProperty =
+            BindableProperty.Create(nameof(RefreshCommand), typeof(ICommand), typeof(PullToRefreshLayout));
 
         /// <summary>
         /// Gets or sets the refresh command.
         /// </summary>
         /// <value>The refresh command.</value>
-        public ICommand RefreshCommand {
-            get { return (ICommand)GetValue (RefreshCommandProperty); }
-            set { SetValue (RefreshCommandProperty, value); }
+        public ICommand RefreshCommand
+        {
+            get { return (ICommand)GetValue(RefreshCommandProperty); }
+            set { SetValue(RefreshCommandProperty, value); }
         }
 
         /// <summary>
         /// Color property of refresh spinner color 
         /// </summary>
         public static readonly BindableProperty RefreshColorProperty =
-            BindableProperty.Create<PullToRefreshLayout, Color>(
-                p => p.RefreshColor, Color.Default);
+            BindableProperty.Create(nameof(RefreshColor), typeof(Color), typeof(PullToRefreshLayout), Color.Default);
 
-       
         /// <summary>
         /// Refresh  color
         /// </summary>
@@ -104,8 +108,7 @@ namespace Refractored.XamForms.PullToRefresh
         /// Color property of refresh background color
         /// </summary>
         public static readonly BindableProperty RefreshBackgroundColorProperty =
-            BindableProperty.Create<PullToRefreshLayout, Color>(
-                p => p.RefreshBackgroundColor, Color.Default);
+            BindableProperty.Create(nameof(RefreshBackgroundColor), typeof(Color), typeof(PullToRefreshLayout), Color.Default);
 
         /// <summary>
         /// Refresh background color
@@ -122,12 +125,12 @@ namespace Refractored.XamForms.PullToRefresh
         /// <summary>
         /// Optimization as we can get the size here of our content all in DIP
         /// </summary>
-        protected override SizeRequest OnSizeRequest (double widthConstraint, double heightConstraint)
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {
             if (Content == null)
                 return new SizeRequest(new Size(100, 100));
 
-            return Content.GetSizeRequest (widthConstraint, heightConstraint);
+            return base.OnMeasure(widthConstraint, heightConstraint);
         }
     }
 }
