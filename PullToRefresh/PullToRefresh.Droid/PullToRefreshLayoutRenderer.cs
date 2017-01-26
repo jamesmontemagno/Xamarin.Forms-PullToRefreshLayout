@@ -370,6 +370,32 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             get;
             private set;
         }
+
+        /// <summary>
+        /// Cleanup layout.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if(Element != null)
+            {
+                Element.PropertyChanged -= HandlePropertyChanged;
+            }
+            if(packed != null)
+            {
+                packed.Dispose();
+                packed = null;
+            }
+
+            if (rendererProperty != null)
+            {
+                rendererProperty = null;
+            }
+
+            init = false;
+        }
     }
 }
 
