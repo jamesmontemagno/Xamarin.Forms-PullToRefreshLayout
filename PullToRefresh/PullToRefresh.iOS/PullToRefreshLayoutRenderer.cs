@@ -94,9 +94,10 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 return true;
             }
 
-            if(view is UIWebView)
+            var uiWebView = view as UIWebView;
+            if (uiWebView != null)
             {
-                view.InsertSubview(refreshControl, index);
+                uiWebView.ScrollView.InsertSubview(refreshControl, index);
                 return true;
             }
 
