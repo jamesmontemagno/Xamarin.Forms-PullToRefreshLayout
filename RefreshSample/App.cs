@@ -25,13 +25,14 @@ namespace RefreshSample
 
             var scrollView = new Button { Text = "ScrollView" };
             var scrollViewXaml = new Button { Text = "ScrollView Xaml" };
-            var listView = new Button  { Text = "ListView" };
+            var listView = new Button { Text = "ListView" };
             var stackLayout = new Button { Text = "StackLayout" };
             var grid = new Button { Text = "Grid" };
             var scrollViewIn = new Button { Text = "ScrollView" };
-            var listViewIn = new Button  { Text = "ListView" };
+            var listViewIn = new Button { Text = "ListView" };
             var stackLayoutIn = new Button { Text = "StackLayout" };
             var gridIn = new Button { Text = "Grid" };
+            var disposeCrash = new Button { Text = "Dispose Crash" };
 
 
             scrollViewPage = new ScrollViewPage(false);
@@ -39,19 +40,19 @@ namespace RefreshSample
             // The root page of your application
             MainPage = page = new NavigationPage(new ContentPage
             {
-                    Title = "Pull to Refresh!",
-                    Content = new ScrollView
+                Title = "Pull to Refresh!",
+                Content = new ScrollView
+                {
+                    Content = new StackLayout
                     {
-                        Content = new StackLayout
-                        {
-                            Padding = 25,
-                            Children =
+                        Padding = 25,
+                        Children =
                             {
                                 new Label
                                 {
                                     Text = "Pull to Refresh in:"
-                                }, 
-                                scrollView, 
+                                },
+                                scrollView,
                                 listView,
                                 stackLayout,
                                 grid,
@@ -59,19 +60,24 @@ namespace RefreshSample
                                 new Label
                                 {
                                     Text = "Inside a layout:"
-                                }, 
-                                scrollViewIn, 
+                                },
+                                scrollViewIn,
                                 listViewIn,
                                 stackLayoutIn,
-                                gridIn, 
+                                gridIn,
+                                new Label
+                                {
+                                    Text = "Misc"
+                                },
+                                disposeCrash
                             }
-                        }
                     }
+                }
             })
-                {
-                    BackgroundColor = Color.FromHex("3498db"),
-                    BarTextColor = Color.White
-                };
+            {
+                BackgroundColor = Color.FromHex("3498db"),
+                BarTextColor = Color.White
+            };
 
             scrollView.Clicked += async (sender, e) =>
             {
@@ -87,6 +93,7 @@ namespace RefreshSample
             stackLayoutIn.Clicked += (sender, e) => page.Navigation.PushAsync(new StackLayoutPage(true));
             grid.Clicked += (sender, e) => page.Navigation.PushAsync(new GridPage(false));
             gridIn.Clicked += (sender, e) => page.Navigation.PushAsync(new GridPage(true));
+            disposeCrash.Clicked += (sender, e) => MainPage = new DisposeCrashPage();
         }
 
         protected override void OnStart()

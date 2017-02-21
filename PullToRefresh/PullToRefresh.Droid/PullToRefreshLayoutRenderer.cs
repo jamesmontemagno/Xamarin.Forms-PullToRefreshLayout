@@ -24,14 +24,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 
-[assembly:ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
+[assembly: ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
 namespace Refractored.XamForms.PullToRefresh.Droid
 {
     /// <summary>
     /// Pull to refresh layout renderer.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class PullToRefreshLayoutRenderer : SwipeRefreshLayout, 
+    public class PullToRefreshLayoutRenderer : SwipeRefreshLayout,
         IVisualElementRenderer,
         SwipeRefreshLayout.IOnRefreshListener
     {
@@ -178,7 +178,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
 
                     if (base.Refreshing == refreshing)
                         return;
-                    
+
                     base.Refreshing = refreshing;
                 }
                 catch (Exception ex)
@@ -216,14 +216,11 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             var sdk = (int)global::Android.OS.Build.VERSION.SdkInt;
             if (sdk >= 16)
             {
-                #if __ANDROID_16__
-               
                 //is a scroll container such as listview, scroll view, gridview
                 if (viewGroup.IsScrollContainer)
                 {
                     return base.CanChildScrollUp();
                 }
-                #endif
             }
 
             //if you have something custom and you can't scroll up you might need to enable this
@@ -358,7 +355,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// <value>The view group.</value>
         public Android.Views.ViewGroup ViewGroup
         {
-            get{ return this; }
+            get { return this; }
         }
 
         /// <summary>
@@ -383,7 +380,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             {
                 Element.PropertyChanged -= HandlePropertyChanged;
             }
-            if(packed != null)
+            /*if(packed != null)
             {
                 packed.Dispose();
                 packed = null;
@@ -392,7 +389,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             if (rendererProperty != null)
             {
                 rendererProperty = null;
-            }
+            }*/
 
             init = false;
         }
