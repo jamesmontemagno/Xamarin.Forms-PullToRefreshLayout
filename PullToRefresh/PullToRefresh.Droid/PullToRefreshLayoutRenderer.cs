@@ -50,6 +50,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         public PullToRefreshLayoutRenderer()
             : base(Forms.Context)
         {
+            
         }
 
         /// <summary>
@@ -187,15 +188,13 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             }
         }
 
-        void UpdateIsRefreshing()
-        {
+        void UpdateIsRefreshing() =>
             Refreshing = RefreshView.IsRefreshing;
-        }
+        
 
-        void UpdateIsSwipeToRefreshEnabled()
-        {
+        void UpdateIsSwipeToRefreshEnabled() =>
             Enabled = RefreshView.IsPullToRefreshEnabled;
-        }
+        
 
 
         /// <summary>
@@ -203,10 +202,9 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// We do this since the actual swipe refresh can't figure it out
         /// </summary>
         /// <returns><c>true</c> if this instance can child scroll up; otherwise, <c>false</c>.</returns>
-        public override bool CanChildScrollUp()
-        {
-            return CanScrollUp(packed.ViewGroup);
-        }
+        public override bool CanChildScrollUp() =>
+            CanScrollUp(packed.ViewGroup);
+        
 
         bool CanScrollUp(ViewGroup viewGroup)
         {
@@ -272,27 +270,14 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// Will throw an exception if the Element is not correct
         /// </summary>
         /// <value>The refresh view.</value>
-        public Refractored.XamForms.PullToRefresh.PullToRefreshLayout RefreshView
-        {
-            get { return this.Element == null ? null : (PullToRefreshLayout)Element; }
-        }
-
+        public Refractored.XamForms.PullToRefresh.PullToRefreshLayout RefreshView =>
+            Element == null ? null : (PullToRefreshLayout)Element; 
 
         /// <summary>
         /// The refresh view has been refreshed
         /// </summary>
-        public void OnRefresh()
-        {
-            //someone pulled down to refresh or it is done
-            if (RefreshView == null)
-                return;
+        public void OnRefresh() => RefreshView?.RefreshCommand?.Execute(null);
 
-            var command = RefreshView.RefreshCommand;
-            if (command == null)
-                return;
-
-            command.Execute(null);
-        }
 
         /// <summary>
         /// Handles the property changed.
@@ -331,42 +316,27 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// <summary>
         /// Updates the layout.
         /// </summary>
-        public void UpdateLayout()
-        {
-            if (Tracker == null)
-                return;
-
-            Tracker.UpdateLayout();
-        }
+        public void UpdateLayout() => Tracker?.UpdateLayout();
+        
 
         /// <summary>
         /// Gets the tracker.
         /// </summary>
         /// <value>The tracker.</value>
-        public VisualElementTracker Tracker
-        {
-            get;
-            private set;
-        }
+        public VisualElementTracker Tracker { get; private set; }
+        
 
         /// <summary>
         /// Gets the view group.
         /// </summary>
         /// <value>The view group.</value>
-        public Android.Views.ViewGroup ViewGroup
-        {
-            get { return this; }
-        }
+        public Android.Views.ViewGroup ViewGroup => this;
 
         /// <summary>
         /// Gets the element.
         /// </summary>
         /// <value>The element.</value>
-        public VisualElement Element
-        {
-            get;
-            private set;
-        }
+        public VisualElement Element { get; private set; }
 
         /// <summary>
         /// Cleanup layout.
@@ -376,22 +346,29 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         {
             base.Dispose(disposing);
 
-            if(Element != null)
+            /*if (disposing)
             {
-                Element.PropertyChanged -= HandlePropertyChanged;
+                if (Element != null)
+                {
+                    Element.PropertyChanged -= HandlePropertyChanged;
+                }
+
+                if (packed != null)
+                    RemoveView(packed.ViewGroup);
             }
-            /*if(packed != null)
-            {
-                packed.Dispose();
-                packed = null;
-            }
+
+            packed?.Dispose();
+            packed = null;
+
+            Tracker?.Dispose();
+            Tracker = null;
+            
 
             if (rendererProperty != null)
             {
                 rendererProperty = null;
-            }*/
-
-            init = false;
+            }
+            init = false;*/
         }
     }
 }

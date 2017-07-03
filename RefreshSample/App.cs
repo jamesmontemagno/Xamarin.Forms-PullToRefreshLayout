@@ -33,6 +33,7 @@ namespace RefreshSample
             var stackLayoutIn = new Button { Text = "StackLayout" };
             var gridIn = new Button { Text = "Grid" };
             var disposeCrash = new Button { Text = "Dispose Crash" };
+            var disposeCrash2 = new Button { Text = "Dispose Crash" };
 
 
             scrollViewPage = new ScrollViewPage(false);
@@ -69,7 +70,8 @@ namespace RefreshSample
                                 {
                                     Text = "Misc"
                                 },
-                                disposeCrash
+                                disposeCrash,
+                                disposeCrash2
                             }
                     }
                 }
@@ -93,7 +95,8 @@ namespace RefreshSample
             stackLayoutIn.Clicked += (sender, e) => page.Navigation.PushAsync(new StackLayoutPage(true));
             grid.Clicked += (sender, e) => page.Navigation.PushAsync(new GridPage(false));
             gridIn.Clicked += (sender, e) => page.Navigation.PushAsync(new GridPage(true));
-            disposeCrash.Clicked += (sender, e) => MainPage = new DisposeCrashPage();
+            disposeCrash.Clicked += (sender, e) => MainPage = new TabbedPage1();
+            disposeCrash2.Clicked += (sender, e) => MainPage = new DisposeCrashPage();
         }
 
         protected override void OnStart()
