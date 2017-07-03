@@ -44,6 +44,11 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         }
 
         UIRefreshControl refreshControl;
+        UIScrollView uiScrollView;
+        UIWebView uiWebView;
+        UITableView uiTableView;
+        UICollectionView uiCollectionView;
+
 
         /// <summary>
         /// Raises the element changed event.
@@ -82,30 +87,33 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         bool TryInsertRefresh(UIView view, int index = 0)
         {
             
+
             if (view is UITableView)
             {
+                uiTableView = view as UITableView;
                 view.InsertSubview(refreshControl, index);
                 return true;
             }
 
             if (view is UICollectionView)
             {
+                uiCollectionView = view as UICollectionView;
                 view.InsertSubview(refreshControl, index);
                 return true;
             }
 
-            var uiWebView = view as UIWebView;
+            uiWebView = view as UIWebView;
             if (uiWebView != null)
             {
                 uiWebView.ScrollView.InsertSubview(refreshControl, index);
                 return true;
             }
 
-            var uIScrollView = view as UIScrollView;
-            if (uIScrollView != null)
+            uiScrollView = view as UIScrollView;
+            if (uiScrollView != null)
             {
                 view.InsertSubview(refreshControl, index);
-				uIScrollView.AlwaysBounceVertical = true;
+                uiScrollView.AlwaysBounceVertical = true;
                 return true;
             }
 
@@ -243,6 +251,11 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             {
                 refreshControl.ValueChanged -= OnRefresh;
             }
+
+            uiTableView = null;
+            uiCollectionView = null;
+            uiWebView = null;
+            uiScrollView = null;
         }
             
     }

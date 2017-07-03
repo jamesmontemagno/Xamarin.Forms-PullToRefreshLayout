@@ -12,32 +12,25 @@
        <requireLicenseAcceptance>false</requireLicenseAcceptance>
        <description>
          Add Pull to Refresh to ScrollView or group a ListView. See Project for more details
-         Ensure you call new PullToRefreshLayoutRenderer.Init() on each platform!
-         Built against:  2.3.2.127
+         Ensure you call  PullToRefreshLayoutRenderer.Init() on each platform!
+         Built against:  2.3.4.247
        </description>
        <summary>Enhanced Pull To Refresh Layout for Xamarin.Forms</summary>
-       <tags>xamarin, pcl, xam.pcl, windows phone, winphone, wp8, android, xamarin.forms, ios, pull to refresh, refresh, swipe</tags>
+       <tags>xamarin, pcl, xam.pcl, android, xamarin.forms, ios, pull to refresh, refresh, swipe</tags>
        <dependencies>
-         <dependency id="Xamarin.Forms" version="2.3.2.127" />
+         <dependency id="Xamarin.Forms" version="2.3.4.247" />
        </dependencies>
    </metadata>
    <files>
       <!--Core-->
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.dll" target="lib\portable-net45+wp80+win8+wpa81\Refractored.XamForms.PullToRefresh.dll" />
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.xml" target="lib\portable-net45+wp80+win8+wpa81\Refractored.XamForms.PullToRefresh.xml" />
+     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.*" target="lib\portable-net45+wp80+win8+wpa81" />
 
 
      <!--Xamarin.Android-->
-     <file src="PullToRefresh/PullToRefresh.Droid/bin/Release/Refractored.XamForms.PullToRefresh.Droid.dll" target="lib\MonoAndroid10\Refractored.XamForms.PullToRefresh.Droid.dll" />
-     <file src="PullToRefresh/PullToRefresh.Droid/bin/Release/Refractored.XamForms.PullToRefresh.Droid.xml" target="lib\MonoAndroid10\Refractored.XamForms.PullToRefresh.Droid.xml" />
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.dll" target="lib\MonoAndroid10\Refractored.XamForms.PullToRefresh.dll" />
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.xml" target="lib\MonoAndroid10\Refractored.XamForms.PullToRefresh.xml" />
+     <file src="PullToRefresh/PullToRefresh.Droid/bin/Release/Refractored.XamForms.PullToRefresh.*" target="lib\MonoAndroid10" />
 
      <!--Xamarin.iOSUnified-->
-     <file src="PullToRefresh/PullToRefresh.iOS/bin/Release/Refractored.XamForms.PullToRefresh.iOS.dll" target="lib\Xamarin.iOS10\Refractored.XamForms.PullToRefresh.iOS.dll" />
-     <file src="PullToRefresh/PullToRefresh.iOS/bin/Release/Refractored.XamForms.PullToRefresh.iOS.xml" target="lib\Xamarin.iOS10\Refractored.XamForms.PullToRefresh.iOS.xml" />
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.dll" target="lib\Xamarin.iOS10\Refractored.XamForms.PullToRefresh.dll" />
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.xml" target="lib\Xamarin.iOS10\Refractored.XamForms.PullToRefresh.xml" />
+     <file src="PullToRefresh/PullToRefresh.iOS/bin/Release/Refractored.XamForms.PullToRefresh.*" target="lib\Xamarin.iOS10" />
       
    </files>
 </package>
