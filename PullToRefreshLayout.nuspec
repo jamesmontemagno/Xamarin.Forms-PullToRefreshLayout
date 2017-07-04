@@ -23,14 +23,14 @@
    </metadata>
    <files>
       <!--Core-->
-     <file src="PullToRefresh/PullToRefresh/bin/Release/Refractored.XamForms.PullToRefresh.*" target="lib\portable-net45+wp80+win8+wpa81" />
+     <file src="PullToRefresh\PullToRefresh\bin\Release\Refractored.XamForms.PullToRefresh.*" target="lib\portable-net45+wp80+win8+wpa81" />
 
 
      <!--Xamarin.Android-->
-     <file src="PullToRefresh/PullToRefresh.Droid/bin/Release/Refractored.XamForms.PullToRefresh.*" target="lib\MonoAndroid10" />
+     <file src="PullToRefresh\PullToRefresh.Droid\bin\Release\Refractored.XamForms.PullToRefresh.*" target="lib\MonoAndroid10" />
 
      <!--Xamarin.iOSUnified-->
-     <file src="PullToRefresh/PullToRefresh.iOS/bin/Release/Refractored.XamForms.PullToRefresh.*" target="lib\Xamarin.iOS10" />
+     <file src="PullToRefresh\PullToRefresh.iOS\bin\Release\Refractored.XamForms.PullToRefresh.*" target="lib\Xamarin.iOS10" />
       
    </files>
 </package>
