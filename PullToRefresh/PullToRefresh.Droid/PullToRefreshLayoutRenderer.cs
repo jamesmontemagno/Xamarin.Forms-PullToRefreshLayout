@@ -57,7 +57,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// Occurs when element changed.
         /// </summary>
         public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
-
+        public event EventHandler<PropertyChangedEventArgs> ElementPropertyChanged;
 
         bool init;
         IVisualElementRenderer packed;
@@ -106,7 +106,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 return;
 
             if (packed != null)
-                RemoveView(packed.ViewGroup);
+                RemoveView(packed.View);
 
             packed = Platform.CreateRenderer(RefreshView.Content);
 
@@ -119,7 +119,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 System.Diagnostics.Debug.WriteLine("Unable to sent renderer property, maybe an issue: " + ex);
             }
 
-            AddView(packed.ViewGroup, LayoutParams.MatchParent);
+            AddView(packed.View, LayoutParams.MatchParent);
 
         }
 
@@ -203,11 +203,12 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// </summary>
         /// <returns><c>true</c> if this instance can child scroll up; otherwise, <c>false</c>.</returns>
         public override bool CanChildScrollUp() =>
-            CanScrollUp(packed.ViewGroup);
+            CanScrollUp(packed.View);
         
 
-        bool CanScrollUp(ViewGroup viewGroup)
+        bool CanScrollUp(Android.Views.View view)
         {
+            var viewGroup = view as ViewGroup;
             if (viewGroup == null)
                 return base.CanChildScrollUp();
 
@@ -307,10 +308,10 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// <param name="heightConstraint">Height constraint.</param>
         public SizeRequest GetDesiredSize(int widthConstraint, int heightConstraint)
         {
-            packed.ViewGroup.Measure(widthConstraint, heightConstraint);
+            packed.View.Measure(widthConstraint, heightConstraint);
 
             //Measure child here and determine size
-            return new SizeRequest(new Size(packed.ViewGroup.MeasuredWidth, packed.ViewGroup.MeasuredHeight));
+            return new SizeRequest(new Size(packed.View.MeasuredWidth, packed.View.MeasuredHeight));
         }
 
         /// <summary>
@@ -331,6 +332,9 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// </summary>
         /// <value>The view group.</value>
         public Android.Views.ViewGroup ViewGroup => this;
+
+
+        public Android.Views.View View => this;
 
         /// <summary>
         /// Gets the element.
@@ -369,6 +373,11 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 rendererProperty = null;
             }
             init = false;*/
+        }
+
+        public void SetLabelFor(int? id)
+        {
+            
         }
     }
 }
