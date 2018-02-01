@@ -44,10 +44,6 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         }
 
         UIRefreshControl refreshControl;
-        UIScrollView uiScrollView;
-        UIWebView uiWebView;
-        UITableView uiTableView;
-        UICollectionView uiCollectionView;
 
 
         /// <summary>
@@ -82,36 +78,93 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             UpdateIsSwipeToRefreshEnabled();
         }
 
-       
 
-        bool TryInsertRefresh(UIView view, int index = 0)
+        bool TryOffsetRefresh(UIView view, bool refreshing, int index = 0)
         {
-            
-
             if (view is UITableView)
             {
-                uiTableView = view as UITableView;
-                view.InsertSubview(refreshControl, index);
+                var uiTableView = view as UITableView;
+                if (refreshing)
+                    uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, uiTableView.ContentOffset.Y - refreshControl.Frame.Size.Height), true);
+                else
+                    uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, uiTableView.ContentOffset.Y + refreshControl.Frame.Size.Height), true);
                 return true;
             }
 
             if (view is UICollectionView)
             {
+                var uiCollectionView = view as UICollectionView;
+                if (refreshing)
+                    uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, uiCollectionView.ContentOffset.Y - refreshControl.Frame.Size.Height), true);
+                else
+                    uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, uiCollectionView.ContentOffset.Y + refreshControl.Frame.Size.Height), true);
+                return true;
+            }
+
+            
+            if (view is UIWebView)
+            {
+                //can't do anything
+                return true;
+            }
+
+            
+            if (view is UIScrollView)
+            {
+                var uiScrollView = view as UIScrollView;
+                if (refreshing)
+                    uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, uiScrollView.ContentOffset.Y - refreshControl.Frame.Size.Height), true);
+                else
+                    uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, uiScrollView.ContentOffset.Y + refreshControl.Frame.Size.Height), true);
+                return true;
+            }
+
+            if (view.Subviews == null)
+                return false;
+
+            for (int i = 0; i < view.Subviews.Length; i++)
+            {
+                var control = view.Subviews[i];
+                if (TryOffsetRefresh(control, refreshing, i))
+                    return true;
+            }
+
+            return false;
+        }
+       
+
+        bool TryInsertRefresh(UIView view, int index = 0)
+        {
+
+
+            if (view is UITableView)
+            {
+                var uiTableView = view as UITableView;
+                uiTableView = view as UITableView;
+                view.InsertSubview(refreshControl, index);
+                return true;
+            }
+
+
+            if (view is UICollectionView)
+            {
+                var uiCollectionView = view as UICollectionView;
                 uiCollectionView = view as UICollectionView;
                 view.InsertSubview(refreshControl, index);
                 return true;
             }
 
-            uiWebView = view as UIWebView;
-            if (uiWebView != null)
+            
+            if (view is UIWebView)
             {
+                var uiWebView = view as UIWebView;
                 uiWebView.ScrollView.InsertSubview(refreshControl, index);
                 return true;
             }
 
-            uiScrollView = view as UIScrollView;
-            if (uiScrollView != null)
+            if (view is UIScrollView)
             {
+                var uiScrollView = view as UIScrollView;
                 view.InsertSubview(refreshControl, index);
                 uiScrollView.AlwaysBounceVertical = true;
                 return true;
@@ -198,11 +251,13 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             get { return isRefreshing;}
             set
             { 
-                isRefreshing = value; 
+                isRefreshing = value;
                 if (isRefreshing)
                     refreshControl.BeginRefreshing();
                 else
                     refreshControl.EndRefreshing();
+
+                TryOffsetRefresh(this, IsRefreshing);
             }
         }
 
@@ -211,15 +266,10 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         /// </summary>
         void OnRefresh(object sender, EventArgs e)
         {
-            //someone pulled down to refresh or it is done
-            if (RefreshView == null)
-                return;
-
-            var command = RefreshView.RefreshCommand;
-            if (command == null)
-                return;
-
-            command.Execute(null);
+            if (RefreshView?.RefreshCommand?.CanExecute(RefreshView?.RefreshCommandParameter) ?? false)
+            {
+                RefreshView.RefreshCommand.Execute(RefreshView?.RefreshCommandParameter);
+            }
         }
 
         /// <summary>
@@ -251,11 +301,6 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             {
                 refreshControl.ValueChanged -= OnRefresh;
             }
-
-            uiTableView = null;
-            uiCollectionView = null;
-            uiWebView = null;
-            uiScrollView = null;
         }
             
     }

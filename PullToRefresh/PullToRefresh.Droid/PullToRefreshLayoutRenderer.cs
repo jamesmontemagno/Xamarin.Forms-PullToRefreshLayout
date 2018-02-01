@@ -272,12 +272,18 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// </summary>
         /// <value>The refresh view.</value>
         public Refractored.XamForms.PullToRefresh.PullToRefreshLayout RefreshView =>
-            Element == null ? null : (PullToRefreshLayout)Element; 
+            Element == null ? null : (PullToRefreshLayout)Element;
 
         /// <summary>
         /// The refresh view has been refreshed
         /// </summary>
-        public void OnRefresh() => RefreshView?.RefreshCommand?.Execute(null);
+        public void OnRefresh()
+        {
+            if (RefreshView?.RefreshCommand?.CanExecute(RefreshView?.RefreshCommandParameter) ?? false)
+            {
+                RefreshView.RefreshCommand.Execute(RefreshView?.RefreshCommandParameter);
+            }
+        }
 
 
         /// <summary>

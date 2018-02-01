@@ -29,6 +29,7 @@ namespace RefreshSample
             var stackLayout = new Button { Text = "StackLayout" };
             var grid = new Button { Text = "Grid" };
             var scrollViewIn = new Button { Text = "ScrollView" };
+            var scrollViewManual = new Button { Text = "ScrollView Manual" };
             var listViewIn = new Button { Text = "ListView" };
             var stackLayoutIn = new Button { Text = "StackLayout" };
             var gridIn = new Button { Text = "Grid" };
@@ -63,6 +64,7 @@ namespace RefreshSample
                                     Text = "Inside a layout:"
                                 },
                                 scrollViewIn,
+                                scrollViewManual,
                                 listViewIn,
                                 stackLayoutIn,
                                 gridIn,
@@ -97,6 +99,7 @@ namespace RefreshSample
             gridIn.Clicked += (sender, e) => page.Navigation.PushAsync(new GridPage(true));
             disposeCrash.Clicked += (sender, e) => MainPage = new TabbedPage1();
             disposeCrash2.Clicked += (sender, e) => MainPage = new DisposeCrashPage();
+            scrollViewManual.Clicked += (sender, e) => page.Navigation.PushAsync(new ScrollViewPageManual(true));
         }
 
         protected override void OnStart()

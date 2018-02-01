@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefreshSample", "RefreshSample\RefreshSample.csproj", "{E8A3B142-4FDA-44D2-AC4C-2578150D4E27}"
 EndProject
@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		build.cake = build.cake
+		CHANGELOG.md = CHANGELOG.md
 		PullToRefreshLayout.nuspec = PullToRefreshLayout.nuspec
 		README.md = README.md
 	EndProjectSection

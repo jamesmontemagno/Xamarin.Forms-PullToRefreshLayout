@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -71,6 +72,7 @@ namespace Refractored.XamForms.PullToRefresh
             set { SetValue(IsPullToRefreshEnabledProperty, value); }
         }
 
+
         /// <summary>
         /// The refresh command property.
         /// </summary>
@@ -85,6 +87,37 @@ namespace Refractored.XamForms.PullToRefresh
         {
             get { return (ICommand)GetValue(RefreshCommandProperty); }
             set { SetValue(RefreshCommandProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets the Refresh command 
+        /// </summary>
+        public static readonly BindableProperty RefreshCommandParameterProperty =
+            BindableProperty.Create(nameof(RefreshCommandParameter),
+                typeof(object),
+                typeof(PullToRefreshLayout),
+                null,
+                propertyChanged: (bindable, oldvalue, newvalue) => ((PullToRefreshLayout)bindable).RefreshCommandCanExecuteChanged(bindable, EventArgs.Empty));
+
+        /// <summary>
+        /// Gets or sets the Refresh command parameter
+        /// </summary>
+        public object RefreshCommandParameter
+        {
+            get { return GetValue(RefreshCommandParameterProperty); }
+            set { SetValue(RefreshCommandParameterProperty, value); }
+        }
+
+        /// <summary>
+        /// Executes if enabled or not based on can execute changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="eventArgs"></param>
+        void RefreshCommandCanExecuteChanged(object sender, EventArgs eventArgs)
+        {
+            ICommand cmd = RefreshCommand;
+            if (cmd != null)
+                IsEnabled = cmd.CanExecute(RefreshCommandParameter);
         }
 
         /// <summary>
