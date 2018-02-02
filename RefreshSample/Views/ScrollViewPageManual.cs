@@ -29,6 +29,7 @@ namespace RefreshSample.Views
             BindingContext = new TestViewModel (this);
             var buttonStart = new Button { Text = "Start" };
             var buttonStop = new Button { Text = "Stop" };
+            var buttonStartStop = new Button { Text = "Start/Stop" };
 
             var grid = new Grid
                 {
@@ -80,6 +81,11 @@ namespace RefreshSample.Views
 
             buttonStart.Clicked += (sender, args) => refreshView.IsRefreshing = true;
             buttonStop.Clicked += (sender, args) => refreshView.IsRefreshing = false;
+            buttonStartStop.Clicked += (sender, args) =>
+            {
+                refreshView.IsRefreshing = true;
+                refreshView.IsRefreshing = false;
+            };
 
 
             if (insideLayout)
@@ -100,6 +106,7 @@ namespace RefreshSample.Views
                             },
                             buttonStart, 
                             buttonStop,
+                            buttonStartStop,
                             refreshView
                         }
                     };

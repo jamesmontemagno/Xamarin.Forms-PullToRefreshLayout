@@ -78,26 +78,40 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             UpdateIsSwipeToRefreshEnabled();
         }
 
+        bool set;
+        nfloat origininalY;
 
         bool TryOffsetRefresh(UIView view, bool refreshing, int index = 0)
         {
             if (view is UITableView)
             {
                 var uiTableView = view as UITableView;
+                if (!set)
+                {
+                    origininalY = uiTableView.ContentOffset.Y;
+                    set = true;
+                }
+
                 if (refreshing)
-                    uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, uiTableView.ContentOffset.Y - refreshControl.Frame.Size.Height), true);
+                    uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
-                    uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, uiTableView.ContentOffset.Y + refreshControl.Frame.Size.Height), true);
+                    uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY), true);
                 return true;
             }
 
             if (view is UICollectionView)
             {
+                
                 var uiCollectionView = view as UICollectionView;
+                if (!set)
+                {
+                    origininalY = uiCollectionView.ContentOffset.Y;
+                    set = true;
+                }
                 if (refreshing)
-                    uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, uiCollectionView.ContentOffset.Y - refreshControl.Frame.Size.Height), true);
+                    uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
-                    uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, uiCollectionView.ContentOffset.Y + refreshControl.Frame.Size.Height), true);
+                    uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY), true);
                 return true;
             }
 
@@ -112,10 +126,16 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             if (view is UIScrollView)
             {
                 var uiScrollView = view as UIScrollView;
+
+                if (!set)
+                {
+                    origininalY = uiScrollView.ContentOffset.Y;
+                    set = true;
+                }
                 if (refreshing)
-                    uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, uiScrollView.ContentOffset.Y - refreshControl.Frame.Size.Height), true);
+                    uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
-                    uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, uiScrollView.ContentOffset.Y + refreshControl.Frame.Size.Height), true);
+                    uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY), true);
                 return true;
             }
 
@@ -250,14 +270,17 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         {
             get { return isRefreshing;}
             set
-            { 
+            {
+                bool changed = IsRefreshing != value;
+
                 isRefreshing = value;
                 if (isRefreshing)
                     refreshControl.BeginRefreshing();
                 else
                     refreshControl.EndRefreshing();
 
-                TryOffsetRefresh(this, IsRefreshing);
+                if(changed)
+                    TryOffsetRefresh(this, IsRefreshing);
             }
         }
 
