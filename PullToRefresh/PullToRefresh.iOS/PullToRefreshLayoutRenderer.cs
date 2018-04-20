@@ -276,7 +276,10 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 if (isRefreshing)
                 {
                     refreshControl.BeginRefreshing();
-                    refreshControl.AttributedTitle = new NSAttributedString(refreshTitle);
+                    if (!string.IsNullOrEmpty(RefreshView.refreshTitle))
+                    {
+                        refreshControl.AttributedTitle = new NSAttributedString(RefreshView.refreshTitle);
+                    }
                 }
                 else
                     refreshControl.EndRefreshing();
