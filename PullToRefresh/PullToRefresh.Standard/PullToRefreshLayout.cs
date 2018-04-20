@@ -71,7 +71,14 @@ namespace Refractored.XamForms.PullToRefresh
             get { return (bool)GetValue(IsPullToRefreshEnabledProperty); }
             set { SetValue(IsPullToRefreshEnabledProperty, value); }
         }
+        public static BindableProperty refreshTitleProperty =
+            BindableProperty.Create(nameof(refreshTitle), typeof(bool), typeof(PullToRefreshLayout), true);
 
+        public string refreshTitle
+        {
+            get { return (string)GetValue(refreshTitleProperty); }
+            set { SetValue(refreshTitleProperty, value); }
+        }
 
         /// <summary>
         /// The refresh command property.

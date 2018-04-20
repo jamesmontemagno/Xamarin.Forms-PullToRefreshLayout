@@ -24,17 +24,17 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 
-[assembly:ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
+[assembly: ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
 namespace Refractored.XamForms.PullToRefresh.iOS
 {
 
     /// <summary>
     /// Pull to refresh layout renderer.
     /// </summary>
-    [Preserve(AllMembers=true)]
+    [Preserve(AllMembers = true)]
     public class PullToRefreshLayoutRenderer : ViewRenderer<PullToRefreshLayout, UIView>
     {
-       
+
         /// <summary>
         /// Used for registration with dependency service
         /// </summary>
@@ -42,24 +42,23 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         {
             var temp = DateTime.Now;
         }
-
+        public string refreshTitle;
         UIRefreshControl refreshControl;
-
 
         /// <summary>
         /// Raises the element changed event.
         /// </summary>
         /// <param name="e">E.</param>
-        protected override void OnElementChanged (ElementChangedEventArgs<Refractored.XamForms.PullToRefresh.PullToRefreshLayout> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Refractored.XamForms.PullToRefresh.PullToRefreshLayout> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (e.OldElement != null || Element == null)
                 return;
 
-  
 
-            refreshControl = new UIRefreshControl ();
+
+            refreshControl = new UIRefreshControl();
 
             refreshControl.ValueChanged += OnRefresh;
 
@@ -67,11 +66,11 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             {
                 TryInsertRefresh(this);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("View is not supported in PullToRefreshLayout: " + ex);
             }
-           
+
 
             UpdateColors();
             UpdateIsRefreshing();
@@ -101,7 +100,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
             if (view is UICollectionView)
             {
-                
+
                 var uiCollectionView = view as UICollectionView;
                 if (!set)
                 {
@@ -115,14 +114,14 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 return true;
             }
 
-            
+
             if (view is UIWebView)
             {
                 //can't do anything
                 return true;
             }
 
-            
+
             if (view is UIScrollView)
             {
                 var uiScrollView = view as UIScrollView;
@@ -151,7 +150,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
             return false;
         }
-       
+
 
         bool TryInsertRefresh(UIView view, int index = 0)
         {
@@ -174,7 +173,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 return true;
             }
 
-            
+
             if (view is UIWebView)
             {
                 var uiWebView = view as UIWebView;
@@ -268,18 +267,21 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         /// <value><c>true</c> if this instance is refreshing; otherwise, <c>false</c>.</value>
         public bool IsRefreshing
         {
-            get { return isRefreshing;}
+            get { return isRefreshing; }
             set
             {
                 bool changed = IsRefreshing != value;
 
                 isRefreshing = value;
                 if (isRefreshing)
+                {
                     refreshControl.BeginRefreshing();
+                    refreshControl.AttributedTitle = new NSAttributedString(refreshTitle);
+                }
                 else
                     refreshControl.EndRefreshing();
 
-                if(changed)
+                if (changed)
                     TryOffsetRefresh(this, IsRefreshing);
             }
         }
@@ -325,9 +327,9 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 refreshControl.ValueChanged -= OnRefresh;
             }
         }
-            
+
     }
 
-  
+
 }
 
