@@ -22,50 +22,52 @@ namespace RefreshSample.Views
     public class GridPage : ContentPage
     {
         public GridPage(bool insideLayout)
-        {var random = new Random();
+        {
+            var random = new Random();
             Title = "StackLayout (Pull to Refresh)";
 
-            BindingContext = new TestViewModel (this);
+            BindingContext = new TestViewModel(this);
 
             var grid = new Grid
-                {
-                    VerticalOptions = LayoutOptions.FillAndExpand,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    RowSpacing = 0,
-                    ColumnSpacing = 0
-                };
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                RowSpacing = 0,
+                ColumnSpacing = 0
+            };
 
             for (int i = 0; i < 20; i++)
             {
-                grid.ColumnDefinitions.Add(new ColumnDefinition{ Width = GridLength.Auto });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
                 for (int j = 0; j < 20; j++)
                 {
-                    
+
                     if (i == 0)
                     {
-                        grid.RowDefinitions.Add(new RowDefinition{ Height = GridLength.Auto });
+                        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
                     }
 
                     grid.Children.Add(new BoxView
-                        {
-                            HeightRequest = 50,
-                            VerticalOptions = LayoutOptions.FillAndExpand,
-                            HorizontalOptions = LayoutOptions.FillAndExpand,
-                            BackgroundColor = Color.FromRgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255))
-                        }, i, j);
+                    {
+                        HeightRequest = 50,
+                        VerticalOptions = LayoutOptions.FillAndExpand,
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        BackgroundColor = Color.FromRgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255))
+                    }, i, j);
                 }
 
             }
 
-            var refreshView = new PullToRefreshLayout {
+            var refreshView = new PullToRefreshLayout
+            {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Content = grid,
                 RefreshColor = Color.FromHex("#3498db")
             };
 
-            refreshView.SetBinding<TestViewModel> (PullToRefreshLayout.IsRefreshingProperty, vm => vm.IsBusy, BindingMode.OneWay);
+            refreshView.SetBinding<TestViewModel>(PullToRefreshLayout.IsRefreshingProperty, vm => vm.IsBusy, BindingMode.OneWay);
             refreshView.SetBinding<TestViewModel>(PullToRefreshLayout.RefreshCommandProperty, vm => vm.RefreshCommand);
 
 
@@ -75,9 +77,9 @@ namespace RefreshSample.Views
                 activity.SetBinding(ActivityIndicator.IsRunningProperty, "IsBusy");
 
                 Content = new StackLayout
-                    {
-                        Spacing = 0,
-                        Children = 
+                {
+                    Spacing = 0,
+                    Children =
                             {
                                 activity,
                                 new Label
@@ -91,7 +93,7 @@ namespace RefreshSample.Views
                                 },
                                 refreshView
                             }
-                        };
+                };
             }
             else
             {
