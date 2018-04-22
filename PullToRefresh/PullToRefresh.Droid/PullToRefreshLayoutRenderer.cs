@@ -50,7 +50,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         public PullToRefreshLayoutRenderer()
             : base(Forms.Context)
         {
-            
+
         }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
 
         bool init;
         IVisualElementRenderer packed;
+        public string refreshTitle;
         /// <summary>
         /// Setup our SwipeRefreshLayout and register for property changed notifications.
         /// </summary>
@@ -190,11 +191,11 @@ namespace Refractored.XamForms.PullToRefresh.Droid
 
         void UpdateIsRefreshing() =>
             Refreshing = RefreshView.IsRefreshing;
-        
+
 
         void UpdateIsSwipeToRefreshEnabled() =>
             Enabled = RefreshView.IsPullToRefreshEnabled;
-        
+
 
 
         /// <summary>
@@ -204,7 +205,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// <returns><c>true</c> if this instance can child scroll up; otherwise, <c>false</c>.</returns>
         public override bool CanChildScrollUp() =>
             CanScrollUp(packed.View);
-        
+
 
         bool CanScrollUp(Android.Views.View view)
         {
@@ -324,14 +325,14 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// Updates the layout.
         /// </summary>
         public void UpdateLayout() => Tracker?.UpdateLayout();
-        
+
 
         /// <summary>
         /// Gets the tracker.
         /// </summary>
         /// <value>The tracker.</value>
         public VisualElementTracker Tracker { get; private set; }
-        
+
 
         /// <summary>
         /// Gets the view group.
@@ -383,7 +384,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
 
         public void SetLabelFor(int? id)
         {
-            
+
         }
     }
 }
