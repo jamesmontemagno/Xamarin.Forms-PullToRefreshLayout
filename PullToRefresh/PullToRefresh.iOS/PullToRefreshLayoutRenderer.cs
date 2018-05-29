@@ -92,6 +92,9 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                     set = true;
                 }
 
+                if (origininalY < 0)
+                    return true;
+
                 if (refreshing)
                     uiTableView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
@@ -108,6 +111,10 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                     origininalY = uiCollectionView.ContentOffset.Y;
                     set = true;
                 }
+
+                if (origininalY < 0)
+                    return true;
+                
                 if (refreshing)
                     uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
@@ -132,6 +139,10 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                     origininalY = uiScrollView.ContentOffset.Y;
                     set = true;
                 }
+
+                if (origininalY < 0)
+                    return true;
+
                 if (refreshing)
                     uiScrollView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
