@@ -6,14 +6,14 @@
        <title>PullToRefresh Layout for Xamarin.Forms</title>
        <authors>James Montemagno</authors>
        <owners>James Montemagno</owners>
-       <licenseUrl>https://github.com/jamesmontemagno/Xamarin.Forms-Awesome-Controls/blob/master/LICENSE</licenseUrl>
-       <projectUrl>https://github.com/jamesmontemagno/Xamarin.Forms-Awesome-Controls/tree/master/PullToRefreshLayout</projectUrl>
+       <licenseUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</licenseUrl>
+       <projectUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</projectUrl>
        <iconUrl>http://www.refractored.com/images/pull_to_refresh.png</iconUrl>
        <requireLicenseAcceptance>false</requireLicenseAcceptance>
        <description>
          Add Pull to Refresh to ScrollView or group a ListView. See Project for more details
          Ensure you call  PullToRefreshLayoutRenderer.Init() on each platform!
-         Built against: 2.4.0.282
+         Built against: 3.4.0.1008975
        </description>
        <summary>Enhanced Pull To Refresh Layout for Xamarin.Forms</summary>
        <tags>xamarin, pcl, xam.pcl, android, xamarin.forms, ios, pull to refresh, refresh, swipe</tags>
@@ -28,12 +28,13 @@
        </group>
        <group targetFramework="netstandard1.0">
          <dependency id="NETStandard.Library" version="1.6.1" />
+         <dependency id="Xamarin.Forms" version="3.4.0.1008975" />
        </group>
        <group targetFramework="MonoAndroid10">
-         <dependency id="Xamarin.Forms" version="2.4.0.282" />
+         <dependency id="Xamarin.Forms" version="3.4.0.1008975" />
        </group>
        <group targetFramework="Xamarin.iOS10">
-         <dependency id="Xamarin.Forms" version="2.4.0.282" />
+         <dependency id="Xamarin.Forms" version="3.4.0.1008975" />
        </group>
        <group targetFramework="Xamarin.Mac20">
        </group>
