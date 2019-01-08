@@ -35,7 +35,9 @@ namespace RefreshSample.Views
             //listView.SetBinding<TestViewModel>(ListView.IsRefreshingProperty, vm => vm.IsBusy, BindingMode.OneWay);
             //listView.SetBinding<TestViewModel>(ListView.RefreshCommandProperty, vm => vm.RefreshCommand);
 
-            listView.SetBinding<TestViewModel> (ItemsView<Cell>.ItemsSourceProperty, vm => vm.Items);
+           
+
+            listView.SetBinding(ItemsView<Cell>.ItemsSourceProperty, new Binding("Items"));
 
             //ListView now has a built in pull to refresh! 
             //You most likely could disable the listview pull to refresh and re-enable this
@@ -54,7 +56,7 @@ namespace RefreshSample.Views
                                     Text = "In a StackLayout",
                                     FontSize = Device.GetNamedSize (NamedSize.Large, typeof(Label)),
                                     BackgroundColor = Color.FromHex("#3498db"),
-                                    XAlign = TextAlignment.Center,
+                                    VerticalTextAlignment = TextAlignment.Center,
                                     HorizontalOptions = LayoutOptions.FillAndExpand
                                 },
                                 listView
@@ -63,8 +65,8 @@ namespace RefreshSample.Views
                 RefreshColor = Color.FromHex("#3498db")
             };
 
-            refreshView.SetBinding<TestViewModel> (PullToRefreshLayout.IsRefreshingProperty, vm => vm.IsBusy);
-            refreshView.SetBinding<TestViewModel>(PullToRefreshLayout.RefreshCommandProperty, vm => vm.RefreshCommand);
+            refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding("IsBusy"));
+            refreshView.SetBinding(PullToRefreshLayout.RefreshCommandProperty, new Binding("RefreshCommand"));
 
 
             if (insideLayout)
@@ -80,7 +82,7 @@ namespace RefreshSample.Views
                                     Text = "In a StackLayout",
                                     FontSize = Device.GetNamedSize (NamedSize.Large, typeof(Label)),
                                     BackgroundColor = Color.FromHex("#3498db"),
-                                    XAlign = TextAlignment.Center,
+                                    VerticalTextAlignment = TextAlignment.Center,
                                     HorizontalOptions = LayoutOptions.FillAndExpand
                                 },
                                 refreshView
