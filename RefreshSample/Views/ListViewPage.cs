@@ -65,7 +65,7 @@ namespace RefreshSample.Views
                 RefreshColor = Color.FromHex("#3498db")
             };
 
-            refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding("IsBusy"));
+            refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, , new Binding("IsBusy", BindingMode.OneWay));
             refreshView.SetBinding(PullToRefreshLayout.RefreshCommandProperty, new Binding("RefreshCommand"));
 
 

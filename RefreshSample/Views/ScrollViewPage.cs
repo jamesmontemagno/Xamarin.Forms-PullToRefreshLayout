@@ -26,67 +26,68 @@ namespace RefreshSample.Views
             var random = new Random();
             Title = "ScrollView (Pull to Refresh)";
 
-            BindingContext = new TestViewModel (this);
+            BindingContext = new TestViewModel(this);
 
 
             var grid = new Grid
-                {
-                    VerticalOptions = LayoutOptions.FillAndExpand,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    RowSpacing = 0,
-                    ColumnSpacing = 0
-                };
-            
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                RowSpacing = 0,
+                ColumnSpacing = 0
+            };
+
             var scrollView = new ScrollView
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                    Content = grid
+                Content = grid
             };
 
 
             for (int i = 0; i < 20; i++)
             {
-                grid.ColumnDefinitions.Add(new ColumnDefinition{ Width = GridLength.Auto });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
                 for (int j = 0; j < 20; j++)
                 {
 
                     if (i == 0)
                     {
-                        grid.RowDefinitions.Add(new RowDefinition{ Height = GridLength.Auto });
+                        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
                     }
 
                     grid.Children.Add(new BoxView
-                        {
-                            HeightRequest = 50,
-                            VerticalOptions = LayoutOptions.FillAndExpand,
-                            HorizontalOptions = LayoutOptions.FillAndExpand,
-                            BackgroundColor = Color.FromRgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255))
-                        }, i, j);
+                    {
+                        HeightRequest = 50,
+                        VerticalOptions = LayoutOptions.FillAndExpand,
+                        HorizontalOptions = LayoutOptions.FillAndExpand,
+                        BackgroundColor = Color.FromRgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255))
+                    }, i, j);
                 }
 
             }
 
 
-            var refreshView = new PullToRefreshLayout {
+            var refreshView = new PullToRefreshLayout
+            {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Content = scrollView,
                 RefreshColor = Color.FromHex("#3498db")
             };
 
-            refreshView.SetBinding<TestViewModel> (PullToRefreshLayout.IsRefreshingProperty, vm => vm.IsBusy, BindingMode.OneWay);
-            refreshView.SetBinding<TestViewModel>(PullToRefreshLayout.RefreshCommandProperty, vm => vm.RefreshCommand);
+            refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding("IsBusy", BindingMode.OneWay));
+            refreshView.SetBinding(PullToRefreshLayout.RefreshCommandProperty, new Binding("RefreshCommand"));
 
 
 
             if (insideLayout)
             {
                 Content = new StackLayout
-                    {
-                        Spacing = 0,
-                        Children = 
+                {
+                    Spacing = 0,
+                    Children =
                         {
                             new Label
                             {
@@ -94,12 +95,12 @@ namespace RefreshSample.Views
                                 Text = "In a StackLayout",
                                 FontSize = Device.GetNamedSize (NamedSize.Large, typeof(Label)),
                                 BackgroundColor = Color.FromHex("#3498db"),
-                                XAlign = TextAlignment.Center,
+                                    VerticalTextAlignment = TextAlignment.Center,
                                 HorizontalOptions = LayoutOptions.FillAndExpand
                             },
                             refreshView
                         }
-                    };
+                };
             }
             else
             {
