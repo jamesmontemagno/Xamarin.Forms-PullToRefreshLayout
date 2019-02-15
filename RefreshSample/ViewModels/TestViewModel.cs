@@ -32,6 +32,22 @@ namespace RefreshSample.ViewModels
             Items = new ObservableCollection<string>();
         }
 
+        bool canRefresh = true;
+
+        public bool CanRefresh
+        {
+            get { return canRefresh; }
+            set
+            {
+                if (canRefresh == value)
+                    return;
+
+                canRefresh = value;
+                OnPropertyChanged("CanRefresh");
+            }
+        }
+
+
         bool isBusy;
 
         public bool IsBusy
@@ -70,7 +86,9 @@ namespace RefreshSample.ViewModels
 
                     IsBusy = false;
 
-                    page.DisplayAlert("Refreshed", "You just refreshed the page! Nice job!", "OK");
+                    page.DisplayAlert("Refreshed", "You just refreshed the page! Nice job! Pull to refresh is now disabled", "OK");
+                    this.CanRefresh = false;
+
                     return false;
                 });
         }
@@ -88,7 +106,6 @@ namespace RefreshSample.ViewModels
 
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }
 

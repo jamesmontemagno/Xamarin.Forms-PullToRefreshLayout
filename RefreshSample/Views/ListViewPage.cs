@@ -16,6 +16,7 @@ using System;
 using Xamarin.Forms;
 using RefreshSample.ViewModels;
 using Refractored.XamForms.PullToRefresh;
+using System.Threading.Tasks;
 
 namespace RefreshSample.Views
 {
@@ -68,7 +69,7 @@ namespace RefreshSample.Views
 
             refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding("IsBusy", BindingMode.OneWay));
             refreshView.SetBinding(PullToRefreshLayout.RefreshCommandProperty, new Binding("RefreshCommand"));
-
+            refreshView.SetBinding(PullToRefreshLayout.IsPullToRefreshEnabledProperty, new Binding("CanRefresh"));
 
             if (insideLayout)
             {
