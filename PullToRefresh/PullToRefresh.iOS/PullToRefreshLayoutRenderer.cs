@@ -24,17 +24,17 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 
-[assembly:ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
+[assembly: ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
 namespace Refractored.XamForms.PullToRefresh.iOS
 {
 
     /// <summary>
     /// Pull to refresh layout renderer.
     /// </summary>
-    [Preserve(AllMembers=true)]
+    [Preserve(AllMembers = true)]
     public class PullToRefreshLayoutRenderer : ViewRenderer<PullToRefreshLayout, UIView>
     {
-       
+
         /// <summary>
         /// Used for registration with dependency service
         /// </summary>
@@ -44,34 +44,25 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         }
 
         UIRefreshControl refreshControl;
+        UIView refreshControlParent;
 
 
         /// <summary>
         /// Raises the element changed event.
         /// </summary>
         /// <param name="e">E.</param>
-        protected override void OnElementChanged (ElementChangedEventArgs<Refractored.XamForms.PullToRefresh.PullToRefreshLayout> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Refractored.XamForms.PullToRefresh.PullToRefreshLayout> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (e.OldElement != null || Element == null)
                 return;
 
-  
-
-            refreshControl = new UIRefreshControl ();
+            refreshControl = new UIRefreshControl();
 
             refreshControl.ValueChanged += OnRefresh;
 
-            try
-            {
-                TryInsertRefresh(this);
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine("View is not supported in PullToRefreshLayout: " + ex);
-            }
-           
+            this.refreshControlParent = this;
 
             UpdateColors();
             UpdateIsRefreshing();
@@ -104,7 +95,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
             if (view is UICollectionView)
             {
-                
+
                 var uiCollectionView = view as UICollectionView;
                 if (!set)
                 {
@@ -114,7 +105,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
                 if (origininalY < 0)
                     return true;
-                
+
                 if (refreshing)
                     uiCollectionView.SetContentOffset(new CoreGraphics.CGPoint(0, origininalY - refreshControl.Frame.Size.Height), true);
                 else
@@ -122,14 +113,14 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 return true;
             }
 
-            
+
             if (view is UIWebView)
             {
                 //can't do anything
                 return true;
             }
 
-            
+
             if (view is UIScrollView)
             {
                 var uiScrollView = view as UIScrollView;
@@ -162,17 +153,18 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
             return false;
         }
-       
+
 
         bool TryInsertRefresh(UIView view, int index = 0)
         {
-
+            this.refreshControlParent = view;
 
             if (view is UITableView)
             {
                 var uiTableView = view as UITableView;
                 uiTableView = view as UITableView;
                 view.InsertSubview(refreshControl, index);
+
                 return true;
             }
 
@@ -185,7 +177,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 return true;
             }
 
-            
+
             if (view is UIWebView)
             {
                 var uiWebView = view as UIWebView;
@@ -256,9 +248,18 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
         void UpdateIsSwipeToRefreshEnabled()
         {
-            refreshControl.Enabled = RefreshView.IsPullToRefreshEnabled;
+            if (RefreshView.IsPullToRefreshEnabled)
+            {
+                this.TryInsertRefresh(this.refreshControlParent);
+            }
+            else
+            {
+                if (this.refreshControl.Superview != null)
+                {
+                    this.refreshControl.RemoveFromSuperview();
+                }
+            }
         }
-
 
         /// <summary>
         /// Helpers to cast our element easily
@@ -273,13 +274,14 @@ namespace Refractored.XamForms.PullToRefresh.iOS
 
 
         bool isRefreshing;
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is refreshing.
         /// </summary>
         /// <value><c>true</c> if this instance is refreshing; otherwise, <c>false</c>.</value>
         public bool IsRefreshing
         {
-            get { return isRefreshing;}
+            get { return isRefreshing; }
             set
             {
                 bool changed = IsRefreshing != value;
@@ -290,7 +292,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 else
                     refreshControl.EndRefreshing();
 
-                if(changed)
+                if (changed)
                     TryOffsetRefresh(this, IsRefreshing);
             }
         }
@@ -335,10 +337,12 @@ namespace Refractored.XamForms.PullToRefresh.iOS
             {
                 refreshControl.ValueChanged -= OnRefresh;
             }
+
+            this.refreshControlParent = null;
         }
-            
+
     }
 
-  
+
 }
 

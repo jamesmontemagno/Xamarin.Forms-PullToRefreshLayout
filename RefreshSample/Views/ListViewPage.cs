@@ -16,6 +16,7 @@ using System;
 using Xamarin.Forms;
 using RefreshSample.ViewModels;
 using Refractored.XamForms.PullToRefresh;
+using System.Threading.Tasks;
 
 namespace RefreshSample.Views
 {
@@ -25,9 +26,9 @@ namespace RefreshSample.Views
         {
             Title = "ListView (Pull to Refresh)";
 
-            BindingContext = new TestViewModel (this);
+            BindingContext = new TestViewModel(this);
 
-            var listView = new ListView ();
+            var listView = new ListView();
             //ListView now has a built in pull to refresh! 
             //You most likely could enable the listview pull to refresh and use it instead of the refresh view
             //listView.IsPullToRefreshEnabled = true;
@@ -35,20 +36,21 @@ namespace RefreshSample.Views
             //listView.SetBinding<TestViewModel>(ListView.IsRefreshingProperty, vm => vm.IsBusy, BindingMode.OneWay);
             //listView.SetBinding<TestViewModel>(ListView.RefreshCommandProperty, vm => vm.RefreshCommand);
 
-           
+
 
             listView.SetBinding(ItemsView<Cell>.ItemsSourceProperty, new Binding("Items"));
 
             //ListView now has a built in pull to refresh! 
             //You most likely could disable the listview pull to refresh and re-enable this
             //However, I wouldn't recommend that.
-            var refreshView = new PullToRefreshLayout {
+            var refreshView = new PullToRefreshLayout
+            {
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Content = new StackLayout
-                    {
-                        Spacing = 0,
-                        Children = 
+                {
+                    Spacing = 0,
+                    Children =
                             {
                                 new Label
                                 {
@@ -61,20 +63,20 @@ namespace RefreshSample.Views
                                 },
                                 listView
                             }
-                        },
+                },
                 RefreshColor = Color.FromHex("#3498db")
             };
 
-            refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, , new Binding("IsBusy", BindingMode.OneWay));
+            refreshView.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding("IsBusy", BindingMode.OneWay));
             refreshView.SetBinding(PullToRefreshLayout.RefreshCommandProperty, new Binding("RefreshCommand"));
-
+            refreshView.SetBinding(PullToRefreshLayout.IsPullToRefreshEnabledProperty, new Binding("CanRefresh"));
 
             if (insideLayout)
             {
                 Content = new StackLayout
                 {
-                        Spacing = 0,
-                        Children = 
+                    Spacing = 0,
+                    Children =
                             {
                                 new Label
                                 {
