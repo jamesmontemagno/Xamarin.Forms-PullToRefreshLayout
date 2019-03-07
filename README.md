@@ -19,7 +19,7 @@ Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/6ivxy
 If you are using the NuGet ensure that you call “PullToRefreshLayoutRenderer.Init();” in both your MainActivity and AppDelegate. (Similar to Xamarin.Forms.Maps).
 
 
-Android: You must build and compile against SDK 7.1+ as this uses Android Support 25.4.0.2!
+Android: You must build and compile against SDK 8.1+ as this uses Android Support 27.0.2!
 
 
 ![](demo.gif)
