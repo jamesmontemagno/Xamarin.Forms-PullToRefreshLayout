@@ -13,12 +13,13 @@ http://motzcod.es/post/128274430137/pull-to-refresh-anyish-xamarinforms-view
 Also available as a NuGet: https://www.nuget.org/packages/Refractored.XamForms.PullToRefresh/
 
 Build Status: [![Build status](https://dev.azure.com/jamesmontemagno/Plugins%20for%20Xamarin/_apis/build/status/PullToRefresh)](https://dev.azure.com/jamesmontemagno/Plugins%20for%20Xamarin/_build/latest?definitionId=0)
+
 **Important**
 
 If you are using the NuGet ensure that you call “PullToRefreshLayoutRenderer.Init();” in both your MainActivity and AppDelegate. (Similar to Xamarin.Forms.Maps).
 
 
-Android: You must build and compile against SDK 7.1+ as this uses Android Support 25.4.0.2!
+Android: You must build and compile against SDK 8.1 or 9.0.
 
 
 ![](demo.gif)
