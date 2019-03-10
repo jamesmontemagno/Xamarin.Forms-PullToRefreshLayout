@@ -14,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PullToRefresh\PullToRefresh.Standard\PullToRefresh.Standard.csproj" />
+    <ProjectReference Include="..\PullToRefresh\PullToRefresh.Standard\PullToRefresh.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

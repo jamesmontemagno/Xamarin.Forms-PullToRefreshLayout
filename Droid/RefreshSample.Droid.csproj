@@ -46,17 +46,13 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PullToRefresh\PullToRefresh.Standard\PullToRefresh.Standard.csproj">
+    <ProjectReference Include="..\PullToRefresh\PullToRefresh.Standard\PullToRefresh.csproj">
       <Project>{10ab134c-d1b9-4589-8121-3ceb3d21d096}</Project>
-      <Name>PullToRefresh.Standard</Name>
+      <Name>PullToRefresh</Name>
     </ProjectReference>
     <ProjectReference Include="..\RefreshSample\RefreshSample.csproj">
       <Project>{E8A3B142-4FDA-44D2-AC4C-2578150D4E27}</Project>
       <Name>RefreshSample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PullToRefresh\PullToRefresh.Droid\PullToRefresh.Droid.csproj">
-      <Project>{73AC7531-ACC8-477C-87E1-5671B9F71FC8}</Project>
-      <Name>PullToRefresh.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
