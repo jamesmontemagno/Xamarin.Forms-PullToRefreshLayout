@@ -22,7 +22,7 @@
       Ensure you call  PullToRefreshLayoutRenderer.Init() on each platform!
       Built against: 3.6.0.220655
     </Description>
-    <Copyright>Copyright 2018</Copyright>
+    <Copyright>Copyright 2019</Copyright>
     <RepositoryUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</RepositoryUrl>
     <PackageReleaseNotes>See: https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout </PackageReleaseNotes>
 
@@ -40,6 +40,7 @@
   <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
     <DebugType>pdbonly</DebugType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)'=='Release' And '$(OS)' == 'Windows_NT' ">
     <DebugType>pdbonly</DebugType>
