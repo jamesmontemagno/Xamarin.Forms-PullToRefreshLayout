@@ -11,7 +11,7 @@
     <PackageId>Refractored.XamForms.PullToRefresh</PackageId>
     <PackOnBuild>true</PackOnBuild>
     <PackageIconUrl>http://www.refractored.com/images/pull_to_refresh.png</PackageIconUrl>
-    <PackageLicenseUrl>hhttps://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</PackageLicenseUrl>
     <Owners>JamesMontemagno</Owners>
     <PackageProjectUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</PackageProjectUrl>
     <Summary>Enhanced Pull To Refresh Layout for Xamarin.Forms</Summary>
