@@ -1,0 +1,75 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/1.6.61">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;MonoAndroid81;MonoAndroid90;Xamarin.iOS10</TargetFrameworks>
+    <AssemblyName>Refractored.XamForms.PullToRefresh</AssemblyName>
+    <RootNamespace>Refractored.XamForms.PullToRefresh</RootNamespace>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>1.0.0.0</Version>
+    <Authors>James Montemagno</Authors>
+    <PackageId>Refractored.XamForms.PullToRefresh</PackageId>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageIconUrl>http://www.refractored.com/images/pull_to_refresh.png</PackageIconUrl>
+    <PackageLicenseUrl>hhttps://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</PackageLicenseUrl>
+    <Owners>JamesMontemagno</Owners>
+    <PackageProjectUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</PackageProjectUrl>
+    <Summary>Enhanced Pull To Refresh Layout for Xamarin.Forms</Summary>
+    <PackageTags>xamarin, pcl, xam.pcl, android, xamarin.forms, ios, pull to refresh, refresh, swipe</PackageTags>
+    <Title>PullToRefresh Layout for Xamarin.Forms</Title>
+    <Description>
+      Add Pull to Refresh to ScrollView or group a ListView. See Project for more details
+      Ensure you call  PullToRefreshLayoutRenderer.Init() on each platform!
+      Built against: 3.6.0.220655
+    </Description>
+    <Copyright>Copyright 2019</Copyright>
+    <RepositoryUrl>https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout</RepositoryUrl>
+    <PackageReleaseNotes>See: https://github.com/jamesmontemagno/Xamarin.Forms-PullToRefreshLayout </PackageReleaseNotes>
+
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>default</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>pdbonly</DebugType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' And '$(OS)' == 'Windows_NT' ">
+    <DebugType>pdbonly</DebugType>
+    <!-- sourcelink: Declare that the Repository URL can be published to NuSpec -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- sourcelink: Embed source files that are not tracked by the source control manager to the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- sourcelink: Include PDB in the built .nupkg -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)'=='Release' And '$(OS)' == 'Windows_NT' ">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-18618-05" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="**\*.shared.cs" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.220655"/>
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+  </ItemGroup>
+
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="**\*.android.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**\*.ios.cs" />
+  </ItemGroup>
+
+
+</Project>

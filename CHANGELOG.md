@@ -1,3 +1,6 @@
+## 2.4.0
+* Multitarget and Azure DevOps
+
 ## 2.2.3
 * Fixes #45 Extra space on iOS
 * Fixes #37 Content Too Low
