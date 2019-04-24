@@ -356,7 +356,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         {
             base.Dispose(disposing);
 
-            /*if (disposing)
+            if (disposing)
             {
                 if (Element != null)
                 {
@@ -378,7 +378,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             {
                 rendererProperty = null;
             }
-            init = false;*/
+            init = false;
         }
 
         public void SetLabelFor(int? id)
