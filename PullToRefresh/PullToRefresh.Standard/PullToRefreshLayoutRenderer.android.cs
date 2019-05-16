@@ -47,10 +47,10 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// Initializes a new instance of the
         /// <see cref="Refractored.XamForms.PullToRefresh.Droid.PullToRefreshLayoutRenderer"/> class.
         /// </summary>
-        public PullToRefreshLayoutRenderer()
-            : base(Forms.Context)
+        public PullToRefreshLayoutRenderer(Context context)
+            : base(context)
         {
-            
+            touchSlop = ViewConfiguration.Get(context).ScaledTouchSlop;
         }
 
         /// <summary>
@@ -92,6 +92,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             UpdateColors();
             UpdateIsRefreshing();
             UpdateIsSwipeToRefreshEnabled();
+            UpdateIsInterceptHorizontalScroll();
 
             if (ElementChanged != null)
                 ElementChanged(this, new VisualElementChangedEventArgs(oldElement, this.Element));
@@ -304,6 +305,8 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 UpdateColors();
             else if (e.PropertyName == PullToRefreshLayout.RefreshBackgroundColorProperty.PropertyName)
                 UpdateColors();
+            else if (e.PropertyName == PullToRefreshLayout.IsInterceptHorizontalScrollProperty.PropertyName)
+                UpdateIsInterceptHorizontalScroll();
         }
 
         /// <summary>
@@ -379,6 +382,42 @@ namespace Refractored.XamForms.PullToRefresh.Droid
                 rendererProperty = null;
             }
             init = false;*/
+        }
+
+        void UpdateIsInterceptHorizontalScroll()
+        {
+            if (RefreshView == null)
+                return;
+
+            isInterceptHorizontalScroll = RefreshView.IsInterceptHorizontalScroll;
+        }
+
+        private bool isInterceptHorizontalScroll;
+        private int touchSlop;
+        private float previousX;
+        public override bool OnInterceptTouchEvent(MotionEvent ev)
+        {
+            if (isInterceptHorizontalScroll)
+                return base.OnInterceptTouchEvent(ev);
+
+            switch (ev.Action)
+            {
+                case MotionEventActions.Down:
+                    previousX = MotionEvent.Obtain(ev).GetX();
+                    break;
+
+                case MotionEventActions.Move:
+                    float eventX = ev.GetX();
+                    float xDiff = Math.Abs(eventX - previousX);
+
+                    if (xDiff > touchSlop)
+                    {
+                        return false;
+                    }
+                    break;
+            }
+
+            return base.OnInterceptTouchEvent(ev);
         }
 
         public void SetLabelFor(int? id)
