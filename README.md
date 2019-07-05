@@ -103,6 +103,7 @@ You can of course do it in XAML:
 ### Officially Supported Views:
 * ListView
 * ScrollView
+* CollectionView
 
 ### Unofficial Supported Views
 * UICollectionView (iOS)
