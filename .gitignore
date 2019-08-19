@@ -220,3 +220,4 @@ pip-log.txt
 tools/**/*.*
 .vs/PullToRefreshLayout/v15/sqlite3/storage.ide
 *.ide-journal
+.vscode
