@@ -17,7 +17,7 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Refractored.XamForms.PullToRefresh
+namespace Refactored.XamForms.PullToRefresh
 {
     /// <summary>
     /// Pull to refresh layout.
@@ -25,7 +25,7 @@ namespace Refractored.XamForms.PullToRefresh
     public class PullToRefreshLayout : ContentView
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Refractored.XamForms.PullToRefresh.PullToRefreshLayout"/> class.
+        /// Initializes a new instance of the <see cref="PullToRefreshLayout"/> class.
         /// </summary>
         public PullToRefreshLayout()
         {

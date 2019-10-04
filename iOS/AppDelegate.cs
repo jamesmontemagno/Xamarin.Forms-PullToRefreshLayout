@@ -4,7 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
-using Refractored.XamForms.PullToRefresh.iOS;
+using Refactored.XamForms.PullToRefresh.iOS;
 
 namespace RefreshSample.iOS
 {

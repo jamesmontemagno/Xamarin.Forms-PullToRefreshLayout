@@ -2,7 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RefreshSample.Views.TabbedPage1"
-    xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh">
+    xmlns:controls="clr-namespace:Refactored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh">
   <!--Pages can be added as references or inline-->
     <ContentPage Title="Tab 1" >
         <controls:PullToRefreshLayout

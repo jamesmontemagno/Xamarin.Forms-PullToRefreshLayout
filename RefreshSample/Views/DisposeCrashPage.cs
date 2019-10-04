@@ -1,4 +1,4 @@
-﻿using Refractored.XamForms.PullToRefresh;
+﻿using Refactored.XamForms.PullToRefresh;
 using System;
 using System.Collections.Generic;
 using System.Linq;

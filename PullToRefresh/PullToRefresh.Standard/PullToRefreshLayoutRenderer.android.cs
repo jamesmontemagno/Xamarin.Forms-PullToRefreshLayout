@@ -18,14 +18,14 @@ using System.Reflection;
 using Android.Runtime;
 using Android.Support.V4.Widget;
 using Android.Views;
-using Refractored.XamForms.PullToRefresh;
-using Refractored.XamForms.PullToRefresh.Droid;
+using Refactored.XamForms.PullToRefresh;
+using Refactored.XamForms.PullToRefresh.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 
 [assembly: ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
-namespace Refractored.XamForms.PullToRefresh.Droid
+namespace Refactored.XamForms.PullToRefresh.Droid
 {
     /// <summary>
     /// Pull to refresh layout renderer.
@@ -45,7 +45,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="Refractored.XamForms.PullToRefresh.Droid.PullToRefreshLayoutRenderer"/> class.
+        /// <see cref="PullToRefreshLayoutRenderer"/> class.
         /// </summary>
         public PullToRefreshLayoutRenderer()
             : base(Forms.Context)
@@ -158,7 +158,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         bool refreshing;
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="Refractored.XamForms.PullToRefresh.Droid.PullToRefreshLayoutRenderer"/> is refreshing.
+        /// <see cref="PullToRefreshLayoutRenderer"/> is refreshing.
         /// </summary>
         /// <value><c>true</c> if refreshing; otherwise, <c>false</c>.</value>
         public override bool Refreshing
@@ -271,7 +271,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// Will throw an exception if the Element is not correct
         /// </summary>
         /// <value>The refresh view.</value>
-        public Refractored.XamForms.PullToRefresh.PullToRefreshLayout RefreshView =>
+        public PullToRefreshLayout RefreshView =>
             Element == null ? null : (PullToRefreshLayout)Element;
 
         /// <summary>

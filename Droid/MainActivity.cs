@@ -16,7 +16,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Graphics.Drawables;
-using Refractored.XamForms.PullToRefresh.Droid;
+using Refactored.XamForms.PullToRefresh.Droid;
 
 namespace RefreshSample.Droid
 {

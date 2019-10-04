@@ -17,15 +17,15 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using Foundation;
-using Refractored.XamForms.PullToRefresh;
-using Refractored.XamForms.PullToRefresh.iOS;
+using Refactored.XamForms.PullToRefresh;
+using Refactored.XamForms.PullToRefresh.iOS;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 
 [assembly: ExportRenderer(typeof(PullToRefreshLayout), typeof(PullToRefreshLayoutRenderer))]
-namespace Refractored.XamForms.PullToRefresh.iOS
+namespace Refactored.XamForms.PullToRefresh.iOS
 {
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         /// Raises the element changed event.
         /// </summary>
         /// <param name="e">E.</param>
-        protected override void OnElementChanged(ElementChangedEventArgs<Refractored.XamForms.PullToRefresh.PullToRefreshLayout> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<PullToRefreshLayout> e)
         {
             base.OnElementChanged(e);
 
@@ -266,7 +266,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         /// Will throw an exception if the Element is not correct
         /// </summary>
         /// <value>The refresh view.</value>
-        public Refractored.XamForms.PullToRefresh.PullToRefreshLayout RefreshView
+        public PullToRefreshLayout RefreshView
         {
             get { return Element; }
         }

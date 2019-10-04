@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="RefreshSample.Views.ScrollViewXamlPage"
-    xmlns:controls="clr-namespace:Refractored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
+    xmlns:controls="clr-namespace:Refactored.XamForms.PullToRefresh;assembly=Refractored.XamForms.PullToRefresh"
     Title="Xaml Scroll">
    <controls:PullToRefreshLayout
           IsPullToRefreshEnabled="True"
