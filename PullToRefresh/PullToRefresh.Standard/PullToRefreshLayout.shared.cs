@@ -153,6 +153,24 @@ namespace Refractored.XamForms.PullToRefresh
         }
 
 
+        /// <summary>
+        /// The Is Intercept Horizontal Scroll property.
+        /// </summary>
+        public static readonly BindableProperty IsInterceptHorizontalScrollProperty =
+            BindableProperty.Create(nameof(IsInterceptHorizontalScroll), typeof(bool), typeof(PullToRefreshLayout), true);
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the pull-to-refresh behaviour will intercept the inner horizontal scroll.
+        /// By default, this value is true
+        /// </summary>
+        /// <value><c>true</c> if the pull-to-refresh will intercept horizontal scroll; otherwise, <c>false</c>.</value>
+        public bool IsInterceptHorizontalScroll
+        {
+            get { return (bool)GetValue(IsInterceptHorizontalScrollProperty); }
+            set { SetValue(IsInterceptHorizontalScrollProperty, value); }
+        }
+
+
         /// <param name="widthConstraint">The available width for the element to use.</param>
         /// <param name="heightConstraint">The available height for the element to use.</param>
         /// <summary>
