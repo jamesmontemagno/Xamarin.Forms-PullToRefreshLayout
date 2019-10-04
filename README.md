@@ -1,6 +1,14 @@
 PullToRefreshLayout for Xamarin.Forms
 ===================================
 
+## Update October 2019
+
+This library will soon be deprecated by the official [RefreshView](https://github.com/xamarin/Xamarin.Forms/issues/5882) as part of [Xamarin.Forms 4.3](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/release-notes/4.3/4.3.0-pre3). No further work will be done on this library.
+
+
+--------------------------------
+
+
 Implementation of pull to refresh layout for Xamarin.Forms targeting iOS and Android.
 
 The goal was to create a cross-platform Xamarin.Forms Layout that could have it’s content set to anything and would enable pull to refresh capabilities. 
