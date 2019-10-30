@@ -190,6 +190,13 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 var uiScrollView = view as UIScrollView;
                 view.InsertSubview(refreshControl, index);
                 uiScrollView.AlwaysBounceVertical = true;
+                
+                //override default refreshcolor if in xaml or behind
+                if (uiScrollView.ContentOffset.Y == 0)
+                {
+                    uiScrollView.ContentOffset = (new CGPoint(0, -refreshControl.Frame.Size.Height * 2.0));
+                }
+                
                 return true;
             }
 
