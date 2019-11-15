@@ -35,10 +35,10 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         IVisualElementRenderer,
         SwipeRefreshLayout.IOnRefreshListener
     {
-        /// <summary>
-        /// Used for registration with dependency service
-        /// </summary>
-        public async static void Init()
+		/// <summary>
+		/// Used for registration with dependency service
+		/// </summary>
+		public async static void Init()
         {
             var temp = DateTime.Now;
         }
@@ -295,7 +295,9 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// <param name="e">E.</param>
         void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Content")
+			if (isDisposed)
+				return;
+			if (e.PropertyName == "Content")
                 UpdateContent();
             else if (e.PropertyName == PullToRefreshLayout.IsPullToRefreshEnabledProperty.PropertyName)
                 UpdateIsSwipeToRefreshEnabled();
@@ -351,6 +353,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// <value>The element.</value>
         public VisualElement Element { get; private set; }
 
+		bool isDisposed = false;
         /// <summary>
         /// Cleanup layout.
         /// </summary>
@@ -358,31 +361,32 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+			isDisposed = true;
 
-            /*if (disposing)
-            {
-                if (Element != null)
-                {
-                    Element.PropertyChanged -= HandlePropertyChanged;
-                }
+			if (disposing)
+			{
+				if (Element != null)
+				{
+					Element.PropertyChanged -= HandlePropertyChanged;
+				}
 
-                if (packed != null)
-                    RemoveView(packed.ViewGroup);
-            }
+				if (packed != null)
+					RemoveView(packed.View);
+			}
 
-            packed?.Dispose();
-            packed = null;
+			packed?.Dispose();
+			packed = null;
 
-            Tracker?.Dispose();
-            Tracker = null;
-            
+			Tracker?.Dispose();
+			Tracker = null;
 
-            if (rendererProperty != null)
-            {
-                rendererProperty = null;
-            }
-            init = false;*/
-        }
+
+			if (rendererProperty != null)
+			{
+				rendererProperty = null;
+			}
+			init = false;
+		}
 
         void UpdateIsInterceptHorizontalScroll()
         {
