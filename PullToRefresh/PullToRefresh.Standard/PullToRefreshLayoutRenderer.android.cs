@@ -109,7 +109,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
             if (packed != null)
                 RemoveView(packed.View);
 
-            packed = Platform.CreateRenderer(RefreshView.Content);
+			packed = Platform.CreateRendererWithContext(RefreshView.Content, Context);
 
             try
             {
