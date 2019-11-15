@@ -47,7 +47,7 @@ namespace Refractored.XamForms.PullToRefresh.Droid
         /// Initializes a new instance of the
         /// <see cref="Refractored.XamForms.PullToRefresh.Droid.PullToRefreshLayoutRenderer"/> class.
         /// </summary>
-        public PullToRefreshLayoutRenderer(Context context)
+        public PullToRefreshLayoutRenderer(Android.Content.Context context)
             : base(context)
         {
             touchSlop = ViewConfiguration.Get(context).ScaledTouchSlop;
