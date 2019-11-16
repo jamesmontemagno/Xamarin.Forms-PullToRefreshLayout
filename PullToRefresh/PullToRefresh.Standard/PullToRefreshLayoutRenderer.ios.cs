@@ -14,8 +14,6 @@
  */
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows.Input;
 using Foundation;
 using Refractored.XamForms.PullToRefresh;
 using Refractored.XamForms.PullToRefresh.iOS;
@@ -159,24 +157,11 @@ namespace Refractored.XamForms.PullToRefresh.iOS
         {
             this.refreshControlParent = view;
 
-            if (view is UITableView)
+            if (view is UITableView || view is UICollectionView)
             {
-                var uiTableView = view as UITableView;
-                uiTableView = view as UITableView;
-                view.InsertSubview(refreshControl, index);
-
-                return true;
-            }
-
-
-            if (view is UICollectionView)
-            {
-                var uiCollectionView = view as UICollectionView;
-                uiCollectionView = view as UICollectionView;
                 view.InsertSubview(refreshControl, index);
                 return true;
             }
-
 
             if (view is UIWebView)
             {
@@ -194,7 +179,7 @@ namespace Refractored.XamForms.PullToRefresh.iOS
                 //override default refreshcolor if in xaml or behind
                 if (uiScrollView.ContentOffset.Y == 0)
                 {
-                    uiScrollView.ContentOffset = (new CGPoint(0, -refreshControl.Frame.Size.Height * 2.0));
+                    uiScrollView.ContentOffset = (new CoreGraphics.CGPoint(0, -refreshControl.Frame.Size.Height * 2.0));
                 }
                 
                 return true;
