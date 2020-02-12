@@ -1,9 +1,9 @@
 PullToRefreshLayout for Xamarin.Forms
 ===================================
 
-## Update October 2019
+## Update - Officially Deprecated
 
-This library will soon be deprecated by the official [RefreshView](https://github.com/xamarin/Xamarin.Forms/issues/5882) as part of [Xamarin.Forms 4.3](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/release-notes/4.3/4.3.0-pre3). No further work will be done on this library.
+This library is officially deprecated and you can now use the official [RefreshView](https://github.com/xamarin/Xamarin.Forms/issues/5882) as part of [Xamarin.Forms 4.3](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/release-notes/4.3/4.3.0-pre3). No further work will be done on this library and all issues will be closed.
 
 
 --------------------------------
